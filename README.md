@@ -2,7 +2,7 @@
 This repository contains everything related to the SERL Discord Server at BTH.  At the time there is some oracles for intended channel structure and role permissions, as well as a development on a discord bot. 
 
 ## Oracles
-- [ ] Add Channel Structure Oracle
+- [x] Add Channel Structure Oracle
 - [ ] Add Role Permissions Oracle
 
 ## discord-bot

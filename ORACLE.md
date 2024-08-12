@@ -35,3 +35,43 @@ These are tools provided by discord that can help both users and moderators to f
 - **Members**
   > 
 
+### Server Structure Oracle
+- **`INFORMATION`**
+  - **rules**
+    > Includes opening hours, what food to bring, the user must behave well, etc. The user needs to accept the terms to access the discord server.
+  - **announcements**
+  - **links**
+  - **roles**
+    > Could be replaced with *Onboarding* from [Community Tools](#community-tools)
+- **`GENERAL`**
+  - **general**
+  - **memes**
+  - ***discussions***
+    - *Games to buy*
+    - *Any plans to hold a movie night?*
+    - *Etc*
+        > A thread channel dedicated to discussions, anyone can create a thread in that channel and the discord bot may reformat the thread to be "`@user` wish to discuss about `#Games to buy`". (Subject to change, it is a very long message for it to be spammed in a single channel).
+- **`HELP`**
+  - **lab-access**
+  - **loan-equipment**
+    > A channel dedicated for discord-bot to manage renting equipment. It is read only but admins can send a command for the discord-bot to keep track of responsibility and return date.
+  - 
+- **`STUDY`**
+  - **software-engineering**
+  - **other-programme-overview**
+    > Dedicated channels for students to see their programme overview of courses. The channel is read only and is managed by admins through discord-bot commands. Only the users with the spacific `@programme` role will have access to their dedicated channel. Unless they toggle the reaction message in `#all-courses`.
+  - ***all-courses***
+    - *XX0000 - Web programming*
+    - *XX0000 - Introduction to software*
+    - *Etc*
+        > A dedicated channel for all university courses that are relevant to our discord server. This will act as a registry for any student user to look for struggles and solutions from previous students. Only the discord-bot will manage this channel by creating threads based on programme overviews defined above. The last message will always be a reaction message to toggle visibility of all programme overviews.
+- **`RODENTS`**
+  - **lab-suggestions**
+    > A forum to discuss how to improve the lab
+  - **general**
+  - ***meeting-notes***
+    - *2024-08-12*
+        > A discord-bot managed channel to write meeting notes in.
+  - **announcements** (Subscribed to discord newsletter)
+    > Mainly a channel for admins to see new discord features, maybe can be applied on a thread or removed as the channel itself won't be too useful.
+
