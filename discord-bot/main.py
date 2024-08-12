@@ -11,6 +11,8 @@ intents.messages = True
 intents.message_content = True
 
 # Define the command prefix
+bot = commands.Bot(command_prefix='$', intents=intents)
+tree = bot.tree
 
 @bot.event
 async def on_ready():
@@ -25,9 +27,7 @@ async def on_message(message):
     if message.content.startswith('$hello'):
         await message.channel.send('Hello!')
 
-bot = commands.Bot(command_prefix='$', intents=intents)
-tree = bot.tree
-@tree.command(name='testa', description='Test command')
+@tree.command(name='test', description='Test command')
 async def test(interaction: discord.Integration):
     await interaction.response.send_message('Test command works!')
 
