@@ -1,4 +1,5 @@
 import os
+import time
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -19,17 +20,10 @@ async def on_ready():
     print(f'Bot is ready. Logged in as {bot.user}')
     await tree.sync()
 
-@bot.event
-async def on_message(message):
-    if message.author == bot.user:
-        return
-
-    if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
-
 @tree.command(name='test', description='Test command')
 async def test(interaction: discord.Integration):
     await interaction.response.send_message('Test command works!')
 
-# Run the bot
-bot.run(TOKEN)
+if __name__ == '__main__':
+    bot.run(TOKEN)
+    print('Bot exited on ' + time.strftime('%Y-%m-%d %H:%M:%S'))
