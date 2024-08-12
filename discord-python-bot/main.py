@@ -1,8 +1,10 @@
+import os
 import discord
 from discord.ext import commands
+from dotenv import load_dotenv
 
-# Replace 'your_token_here' with your bot's token
-TOKEN = ''
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
 
 intents = discord.Intents.default()
 intents.messages = True
