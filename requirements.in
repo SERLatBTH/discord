@@ -1,0 +1,10 @@
+### How to use:
+# pip install pip-tools
+# pip-compile requirements.in
+### Now there is a formatted requirements.txt file that can be used to install the dependencies
+# pip install -r requirements.txt
+
+# Requirements
+discord.py
+discord-py-interactions
+python-dotenv
