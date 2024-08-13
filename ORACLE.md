@@ -33,7 +33,7 @@ These are tools provided by discord that can help both users and moderators to f
 - **Browse Channels**
   > Everyone is allowed to browse channels of the Discord Server. It is an accessibility tool intended for massive community servers with personalization. Our server is **not** intended to be massive by any means, the feature is redundant for our use case.
   > Browse Channels do support "Onboarding" which is accessible through `Server Settings > Community > Onboarding` or by right-clicking "Browse Channels" button and then "Edit Onboarding".
-  > Onboarding is a discord feature that lets newcomers be guided through the personalization process and incentivizes a first chat message. Onboarding could be a replacement for a traditional **#roles** channel.
+  > Onboarding is a discord feature that lets newcomers be guided through the personalization process and incentivize a first chat message. Onboarding could be a replacement for a traditional **#roles** channel.
 - **Members**
   > The Members Page is a tool for moderators and admins to manage members of the server. Discord gives access to the tool if a user has at least one of the following permissions: administrator, manage server, manage roles, manage nicknames, ban members, timeout members, or kick members.
   > This tool can be useful for changing previous students to alumni after a summer break. For more information regarding the tool, visit [support.discord.com](https://support.discord.com/hc/en-us/articles/15946797617431-Members-Page).
