@@ -1,0 +1,7 @@
+services:
+  bot:
+    container_name: discord-bot
+    build:
+      context: ./
+    environment:
+      - DISCORD_TOKEN=''
