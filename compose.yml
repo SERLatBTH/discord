@@ -3,5 +3,5 @@ services:
     container_name: discord-bot
     build:
       context: ./
-    environment:
-      - DISCORD_TOKEN=''
+    env_file:
+      - .env
