@@ -11,8 +11,9 @@ A simple bot to manage our SERL discord server
 ## Build and Run
 
 The easiest way to run the Discord bot is to use Docker.
-First, set the environment variable `DISCORD_TOKEN` in the `compose.yml` file with your token.
-Then you can use the following command to build and run the bot:
+First, rename `.env.sample` to `.env`.
+Then set the environment variable `DISCORD_TOKEN` in the `.env` file with your token.
+Finally, you can use the following command to build and run the bot:
 
 ```sh
 docker compose up
