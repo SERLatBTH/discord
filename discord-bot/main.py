@@ -5,7 +5,11 @@ from discord.ext import commands
 from dotenv import load_dotenv
 
 load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+def load_discord_token():
+    try:
+        return os.environ["DISCORD_TOKEN"]
+    except KeyError:
+        raise NameError("DISCORD_TOKEN env does not exist. Unable to proceed.")
 
 intents = discord.Intents.default()
 intents.messages = True
@@ -25,5 +29,6 @@ async def test(interaction: discord.Integration):
     await interaction.response.send_message('Test command works!')
 
 if __name__ == '__main__':
-    bot.run(TOKEN)
+    token = load_discord_token()
+    bot.run(token)
     print('Bot exited on ' + time.strftime('%Y-%m-%d %H:%M:%S'))

@@ -8,6 +8,17 @@ Acts as a backup if the Discord Server gets compromised or an authorized user ch
 ## discord-bot
 A simple bot to manage our SERL discord server
 
+## Build and Run
+
+The easiest way to run the Discord bot is to use Docker.
+First, rename `.env.sample` to `.env`.
+Then set the environment variable `DISCORD_TOKEN` in the `.env` file with your token.
+Finally, you can use the following command to build and run the bot:
+
+```sh
+docker compose up
+```
+
 ### Development
 The bot is based on the [discord.py python library](https://discordpy.readthedocs.io/en/stable/index.html#) to get started building our first Discord app. More resources to get started:
 
