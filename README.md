@@ -1,7 +1,9 @@
 # Discord Repository
+
 This repository contains everything related to the SERL Discord Server at BTH.
 
 ## Oracle
+
 [**The Oracle**](ORACLE.md) contains intended channel structure, role permissions and functionality of the discord bot. Includes comments with reasoning behind selected features.  
 Acts as a backup if the Discord Server gets compromised or an authorized user changes unintended settings without documentation.
 
