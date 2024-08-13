@@ -27,13 +27,14 @@ See example below:
 ### Community Tools
 These are tools provided by discord that can help both users and moderators to find information about events, channels and members. 
 - **Events**
-  > Only users who have the "Create Events" or "Manage Events" permissions are allowed to see this tool by default. If there is a planned event or ongoing event, then everyone will be able to see button with additional information.
+  > Only users who have the "Create Events" or "Manage Events" permissions are allowed to see this tool by default. If there is a planned event or ongoing event, then everyone will be able to see the button with additional information.
 - **Browse Channels**
   > Everyone is allowed to browse channels of the Discord Server. It is an accessibility tool intended for massive community servers with personalization. Our server is **not** intended to be massive by any means, the feature is redundant for our use case.  
   > Browse Channels do support "Onboarding" which is accessible through `Server Settings > Community > Onboarding` or by right-clicking "Browse Channels" button and then "Edit Onboarding".  
   > Onboarding is a discord feature that lets newcomers be guided through the personalization process and incentivizes a first chat message. Onboarding could be a replacement for a traditional **#roles** channel. 
 - **Members**
-  > 
+  > The Members Page is a tool for moderators and admins to manage members of the server. Discord gives access to the tool if a user has at least one of the following permissions: administrator, manage server, manage roles, manage nicknames, ban members, timeout members, or kick members.  
+  > This tool can be useful for changing previous students to alumni after a summer break. For more information regarding the tool, visit [support.discord.com](https://support.discord.com/hc/en-us/articles/15946797617431-Members-Page).
 
 ### Server Structure Oracle
 - **`INFORMATION`**
@@ -59,19 +60,21 @@ These are tools provided by discord that can help both users and moderators to f
 - **`STUDY`**
   - **software-engineering**
   - **other-program-overview**
-    > Dedicated channels for students to see their program overview of courses. The channel is read only and is managed by admins through discord-bot commands. Only the users with the specific `@program` role will have access to their dedicated channel. Unless they toggle the reaction message in `#all-courses`.
+    > Dedicated channels for students to see their program overview of courses. The channel is read only and is managed by admins through discord-bot commands. Only the users with the specific `@program` role will have access to their dedicated channel. The last message will always be a reaction message to toggle visibility of all program overviews.
   - ***all-courses***
     - *XX0000 - Web programming*
     - *XX0000 - Introduction to software*
     - *Etc*
-        > A dedicated channel for all university courses that are relevant to our discord server. This will act as a registry for any student user to look for struggles and solutions from previous students. Only the discord-bot will manage this channel by creating threads based on program overviews defined above. The last message will always be a reaction message to toggle visibility of all program overviews.
+        > A dedicated channel for all university courses that are relevant to our discord server. This will act as a registry for any student user to look for struggles and solutions from previous students. Only the discord-bot will manage this channel by creating threads based on program overviews defined above. The last message will always be instructions on how to use Discord's search threads function in the top right corner.
 - **`RODENTS`**
+  - **general**
   - **lab-suggestions**
     > A forum to discuss how to improve the lab
-  - **general**
-  - ***meeting-notes***
-    - *2024-08-12*
-        > A discord-bot managed channel to write meeting notes in.
+  - **happenings**
+    - *Robotics Workshop*
+    - *Open House*
+    - *Lab Meeting 2024-08-13*
+        > A channel that acts as both announcements and events in one. Admins can announce upcoming meetings. Moderators can create threads to plan upcoming happenings. Here lies an opportunity for the discord bot to summarize past meetings to create an opening speech for a new meeting. Perhaps `/meeting` is a suitable command.
   - **announcements** (Subscribed to discord newsletter)
     > Mainly a channel for admins to see new discord features, maybe can be applied on a thread or removed as the channel itself won't be too useful.
 
