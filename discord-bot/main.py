@@ -42,6 +42,24 @@ async def help(interaction: discord.Interaction):
 async def ping(interaction: discord.Interaction):
     await interaction.response.send_message(f"⏱️ Pong! ⏱️\nConnection speed is {round(bot.latency * 1000)}ms", ephemeral=True)
 
+@bot.tree.command(description='Get link to the GitHub repository.')
+async def github(interaction: discord.Interaction):
+    github_url = 'https://github.com/SERLatBTH/discord'
+    view = discord.ui.View()
+    button = discord.ui.Button(label='GitHub Repository', url=github_url, style=discord.ButtonStyle.link)
+    view.add_item(button)
+    await interaction.response.send_message(view=view, ephemeral=True)
+
+@bot.tree.command(description='Send a message to the channel.')
+async def message(interaction: discord.Interaction, content: str):
+    await interaction.response.send_message(content, ephemeral=True)
+
+@bot.tree.command(description='Create a thread in the current channel.')
+async def thread(interaction: discord.Interaction, name: str):
+    thread = await interaction.channel.create_thread(name=name, auto_archive_duration=60)
+    await interaction.response.send_message(f"Thread created: {thread.mention} or {thread.jump_url}", ephemeral=True)
+
+
 if __name__ == '__main__':
     token = get_env_variable('DISCORD_TOKEN', required=True)
     bot.run(token, reconnect=True)
