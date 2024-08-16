@@ -5,6 +5,7 @@ from discord import app_commands
 from utility import get_env_variable
 
 
+# Code inpired from: https://github.com/therealOri/TheAdministrator/blob/c2e74191eef7cf20960e23cb27e5b6004145045c/admin.py#L122
 # +++++++++++ Client Setup +++++++++++ #
 class Bot(discord.Client):
     def __init__(self, *, intents: discord.Intents):
