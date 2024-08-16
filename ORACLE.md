@@ -52,8 +52,6 @@ These are tools provided by discord that can help both users and moderators to f
     > Includes opening hours, what food to bring, the user must behave well, etc. The user needs to accept the terms to access the discord server.
   - **announcements**
   - **links**
-  - **roles**
-    > Could be replaced with _Onboarding_ from [Community Tools](#community-tools)
 - **`GENERAL`**
   - **general**
   - **memes**
@@ -84,8 +82,11 @@ These are tools provided by discord that can help both users and moderators to f
     - _Open House_
     - _Lab Meeting 2024-08-13_
       > A channel that acts as both announcements and events in one. Admins can announce upcoming meetings. Moderators can create threads to plan upcoming happenings. Here lies an opportunity for the discord bot to summarize past meetings to create an opening speech for a new meeting. Perhaps `/meeting` is a suitable command.
-  - **announcements** (Subscribed to discord newsletter)
-    > Mainly a channel for admins to see new discord features, maybe can be applied on a thread or removed as the channel itself won't be too useful.
+  - **discord** (Subscribed to discord newsletter)
+    > Mainly a channel for admins to see new discord features. Could include threads that has the purpose of logging the server or new members joining.
+    - _Member Log_
+    - _Change Log_
+    - _Bot Activity Log_
 
 ## Server Roles
 
