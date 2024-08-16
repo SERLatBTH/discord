@@ -1,5 +1,12 @@
 # Oracle
 
+- [Oracle](#oracle)
+  - [Server Structure](#server-structure)
+    - [Formatting](#formatting)
+    - [Community Tools](#community-tools)
+    - [Server Structure Oracle](#server-structure-oracle)
+  - [Server Roles](#server-roles)
+
 This document defines structures for how the Discord Server shall be configured. Including comments with reasoning behind selected configuration options. Acts as a backup if the Discord Server gets compromised or an authorized user changes unintended settings without documentation.
 
 ## Server Structure
@@ -79,3 +86,33 @@ These are tools provided by discord that can help both users and moderators to f
       > A channel that acts as both announcements and events in one. Admins can announce upcoming meetings. Moderators can create threads to plan upcoming happenings. Here lies an opportunity for the discord bot to summarize past meetings to create an opening speech for a new meeting. Perhaps `/meeting` is a suitable command.
   - **announcements** (Subscribed to discord newsletter)
     > Mainly a channel for admins to see new discord features, maybe can be applied on a thread or removed as the channel itself won't be too useful.
+
+## Server Roles
+
+A list of roles supported by the discord server. The emoji represents what emoji should be displayed beside the user's username. This is a feature of the discord bot to assign later.
+
+- **BTH Employees**
+  - Lab Director 🥼
+  - Lab Researcher 🥼
+- **Lab Assistants**
+  - Rat King 👑
+  - Lab Rat 🐀
+  - Lab Mouse 🐁
+  - Lab Escapee 🚪
+- **Study Programs**
+  - SE-BSc
+  - SE-MSc
+  - Sec-BSc
+  - Sec-MSc
+  - AI-MSc
+  - Web-BSc
+  - Game-BSc
+  - Game-MSc
+  - Alumni
+- **Rat King Tools**
+  > A set of roles that Rat King should manage on the fly.
+  - Test Subject 🧪
+    > A role given to newcomers. Will be removed after they've accepted the `#rules` or changed their name.
+  - Lendmaster 📤
+  - Borrower 📥
+    > Roles given to the labrat lending and the user recieving respectevely.
