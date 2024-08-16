@@ -1,24 +1,18 @@
-import os
 import time
 import datetime
 import discord
 from discord import app_commands
-from dotenv import load_dotenv
+from utility import get_env_variable
 
-load_dotenv()
-def load_discord_token():
-    try:
-        return os.environ["DISCORD_TOKEN"]
-    except KeyError:
-        raise NameError("DISCORD_TOKEN env does not exist. Unable to proceed.")
 
-MY_GUILD = discord.Object(id=os.environ["GUILD_ID"])
 # +++++++++++ Client Setup +++++++++++ #
 class Bot(discord.Client):
-    def __init__(self, *, intents: discord.Intents, guild: discord.Guild = None):
+    def __init__(self, *, intents: discord.Intents):
+        guild_id = get_env_variable('GUILD_ID', required=True)
+
         super().__init__(intents=intents)
         self.tree = app_commands.CommandTree(self)
-        self.guild = guild
+        self.guild = discord.Guild(id=guild_id)
 
     async def setup_hook(self):
         # This copies the global commands over to your guild.
@@ -55,6 +49,6 @@ async def ping(interaction: discord.Interaction):
     await interaction.response.send_message(f"⏱️ Pong! ⏱️\nConnection speed is {round(bot.latency * 1000)}ms", ephemeral=True)
 
 if __name__ == '__main__':
-    token = load_discord_token()
+    token = get_env_variable('DISCORD_TOKEN', required=True)
     bot.run(token, reconnect=True)
     print('Bot exited on ' + time.strftime('%Y-%m-%d %H:%M:%S'))
