@@ -6,6 +6,7 @@
     - [Community Tools](#community-tools)
     - [Server Structure Oracle](#server-structure-oracle)
   - [Server Roles](#server-roles)
+    - [Role Display](#role-display)
 
 This document defines structures for how the Discord Server shall be configured. Including comments with reasoning behind selected configuration options. Acts as a backup if the Discord Server gets compromised or an authorized user changes unintended settings without documentation.
 
@@ -94,7 +95,7 @@ A list of roles supported by the discord server. The emoji represents what emoji
 
 - **BTH Employees**
   - Lab Director 🥼
-    > Employees responsible for the lab.
+    > Employee responsible for the lab.
   - Lab Researcher 🥼
     > University Professors who are active in creating workshops and making projects.
 - **Lab Assistants**
@@ -111,9 +112,14 @@ A list of roles supported by the discord server. The emoji represents what emoji
   - Web Study
   - Game Study
   - Other Study
+- **Study Year**
+  - 20
+  - 21
+  - ...
+    > Perhaps too ambitious. Would be nice to see which year a student began their study.
 - **Miscellaneous**
   > A set of roles that are difficult to group with other roles.
-  - Alumni
+  - Alumni 🎓
   - Visitor
 - **Rat King Tools**
   > A set of roles that Rat King should manage on the fly. None of them should effect the user experience.
@@ -124,3 +130,12 @@ A list of roles supported by the discord server. The emoji represents what emoji
     > Roles given to the labrat lending and the user recieving respectevely.
   - Study Curious
     > A role for displaying all courses and program information.
+
+### Role Display
+
+All roles **not** specified shall have the default role color and keep the extra display options disabled.
+
+- **BTH Employees** has a blue color to represent the university color. _Lab Director_ has a brighter color to signify their importance while _Lab Researcher_ has a darker color. _Lab Director_ always has both roles as _Lab Researcher_ shall be the "Display role members separately from online members" while director does not.
+- **Lab Assistants** _Lab Rat_ and _Lab Mouse_ shall display role members seperate from others and anyone should be able to _@mention_ the role.
+  - **_Rat King_** shall have a gold color to represent their royalty as well as be part of _Lab Rat_ to be grouped together.
+- **Study Programs** has each field of study represented by a color. Master's has a darker color of the bachelor's color, this is to follow the standard martial arts progression, where darker equals more experience.  
