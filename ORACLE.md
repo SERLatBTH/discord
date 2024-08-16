@@ -93,7 +93,9 @@ A list of roles supported by the discord server. The emoji represents what emoji
 
 - **BTH Employees**
   - Lab Director 🥼
+    > Employees responsible for the lab.
   - Lab Researcher 🥼
+    > University Professors who are active in creating workshops and making projects.
 - **Lab Assistants**
   - Rat King 👑
   - Lab Rat 🐀
@@ -104,15 +106,20 @@ A list of roles supported by the discord server. The emoji represents what emoji
   - SE-MSc
   - Sec-BSc
   - Sec-MSc
-  - AI-MSc
-  - Web-BSc
-  - Game-BSc
-  - Game-MSc
+  - AI Study
+  - Web Study
+  - Game Study
+  - Other Study
+- **Miscellaneous**
+  > A set of roles that are difficult to group with other roles.
   - Alumni
+  - Visitor
 - **Rat King Tools**
-  > A set of roles that Rat King should manage on the fly.
+  > A set of roles that Rat King should manage on the fly. None of them should effect the user experience.
   - Test Subject 🧪
-    > A role given to newcomers. Will be removed after they've accepted the `#rules` or changed their name.
+    > A role given to newcomers. Will be removed after they've accepted the `#rules`.
   - Lendmaster 📤
   - Borrower 📥
     > Roles given to the labrat lending and the user recieving respectevely.
+  - Study Curious
+    > A role for displaying all courses and program information.
