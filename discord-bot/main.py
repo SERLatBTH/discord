@@ -12,39 +12,33 @@ class Bot(discord.Client):
 
         super().__init__(intents=intents)
         self.tree = app_commands.CommandTree(self)
-        self.guild = discord.Guild(id=guild_id)
+        self.guild = discord.Object(id=guild_id)
 
     async def setup_hook(self):
         # This copies the global commands over to your guild.
         self.tree.copy_global_to(guild=self.guild)
-        #self.tree.clear_commands(guild=None)
-        #self.tree.clear_commands(guild=self.guild) # clears guild commands
         await self.tree.sync(guild=self.guild)
     
 
 
 intents = discord.Intents.default()
-# intents.members = True
 intents.message_content = True
-bot = Bot(intents=intents, guild=MY_GUILD)
+bot = Bot(intents=intents)
 # +++++++++++ Client Setup +++++++++++ #
 
 @bot.tree.command(description='Shows you what commands you can use.')
 async def help(interaction: discord.Interaction):
-    rnd_hex = 0x00ff00
-    embed = discord.Embed(title='Commands  |  Help\n-=-=-=-=-=-=-=-=-=-=-=-=-=-', colour=rnd_hex, timestamp=datetime.datetime.now(datetime.timezone.utc))
-    # embed.set_thumbnail(url=bot_logo)
-    embed.add_field(name='\u200B\n/judgement help', value="Shows you a help message for judgement commands.", inline=False)
-    embed.add_field(name='\u200B\n/ticket <title> <message>', value="Creates a support ticket", inline=False)
-    embed.add_field(name='\u200B\n/report <userId> <message_Id> <channel_Id> (screenshot link)', value="Reports a user to staff.", inline=False)
-    embed.add_field(name='\u200B\n/orb', value="Ask a question, get an answer.", inline=True)
-    embed.add_field(name='\u200B\n/flip', value="Flips a coin for 'Heads' or 'Tails'.", inline=True)
-    embed.add_field(name='\u200B\n/rmbg <image>', value="Remove the background from images.", inline=True)
-    embed.add_field(name='\u200B\n/glcvrt <message> (option)', value="Will convert your message to and from the galactic alphabet.", inline=False)
-    # embed.set_footer(text=__authors__, icon_url=author_logo)
+    gold_colour = 0xFFD700
+    PREFIX = '\u200B\n' # 'Zero Width Space' & 'New Line'
+    embed = discord.Embed(title='Commands  |  Help\n-=-=-=-=-=-=-=-=-=-=-=-=-=-', colour=gold_colour)
+    embed.set_thumbnail(url=bot.user.display_avatar.url)
+    embed.add_field(name=PREFIX + '/message <content>', value="Order me to send a message", inline=False)
+    embed.add_field(name=PREFIX + '/thread <name>', value="Order me to create a thread in current channel", inline=False)
+    embed.add_field(name=PREFIX + '/ping', value="Check my reflexes.", inline=True)
+    embed.add_field(name=PREFIX + '/github', value="I'll give a link to my source code.", inline=True)
     await interaction.response.send_message(embed=embed, ephemeral=True)
 
-@bot.tree.command(description='Shows you what commands you can use.')
+@bot.tree.command(description='Check the latency of the bot.')
 async def ping(interaction: discord.Interaction):
     await interaction.response.send_message(f"⏱️ Pong! ⏱️\nConnection speed is {round(bot.latency * 1000)}ms", ephemeral=True)
 
