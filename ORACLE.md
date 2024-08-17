@@ -91,19 +91,22 @@ These are tools provided by discord that can help both users and moderators to f
 
 ## Server Roles
 
-A list of roles supported by the discord server. The emoji represents what emoji should be displayed beside the user's username. This is a feature of the discord bot to assign later.
+A list of roles supported by the discord server. The headers should be surrounded by two "▬" in the server to distinguish them from regular roles. They are not meant to be assignable.  
+On the roles that has an emoji present, it is not part of the role title but a way to dictate what should be added to a user's username. The discord bot should automatically assign the emojis when a role changes.
 
-- **BTH Employees**
+- **▬▬ BTH Employees ▬▬**
   - Lab Director 🥼
     > Employee responsible for the lab.
   - Lab Researcher 🥼
     > University Professors who are active in creating workshops and making projects.
-- **Lab Assistants**
+- **▬▬ Lab Assistants ▬▬**
+  - Ratministrator 🧀
+    > Role dedicated to manage the discord server itself. It is a dangerous role because it has the same privileges as Lab Director and could change anything.
   - Rat King 👑
   - Lab Rat 🐀
   - Lab Mouse 🐁
   - Lab Escapee 🚪
-- **Study Programs**
+- **▬▬ Study Programs ▬▬**
   - SE-BSc
   - SE-MSc
   - Sec-BSc
@@ -112,16 +115,17 @@ A list of roles supported by the discord server. The emoji represents what emoji
   - Web Study
   - Game Study
   - Other Study
-- **Study Year**
+- **▬▬ Study Year ▬▬**
   - 20
   - 21
   - ...
     > Perhaps too ambitious. Would be nice to see which year a student began their study.
-- **Miscellaneous**
-  > A set of roles that are difficult to group with other roles.
+- **▬▬ Miscellaneous ▬▬**
+  > A set of roles that are difficult to group with other roles. They could be expertise or role 
   - Alumni 🎓
-  - Visitor
-- **Rat King Tools**
+  - Visitor 🎩
+  - Print Master 🏗️
+- **▬▬ Rat King Tools ▬▬**
   > A set of roles that Rat King should manage on the fly. None of them should effect the user experience.
   - Test Subject 🧪
     > A role given to newcomers. Will be removed after they've accepted the `#rules`.
@@ -138,4 +142,4 @@ All roles **not** specified shall have the default role color and keep the extra
 - **BTH Employees** has a blue color to represent the university color. _Lab Director_ has a brighter color to signify their importance while _Lab Researcher_ has a darker color. _Lab Director_ always has both roles as _Lab Researcher_ shall be the "Display role members separately from online members" while director does not.
 - **Lab Assistants** _Lab Rat_ and _Lab Mouse_ shall display role members seperate from others and anyone should be able to _@mention_ the role.
   - **_Rat King_** shall have a gold color to represent their royalty as well as be part of _Lab Rat_ to be grouped together.
-- **Study Programs** has each field of study represented by a color. Master's has a darker color of the bachelor's color, this is to follow the standard martial arts progression, where darker equals more experience.  
+- **Study Programs** has each field of study represented by a color. Master's has a brighter color of the bachelor's color, this is to follow the similar logic in BTH Employees.
