@@ -122,7 +122,7 @@ On the roles that has an emoji present, it is not part of the role title but a w
   - ...
     > Perhaps too ambitious. Would be nice to see which year a student began their study.
 - **▬▬ Miscellaneous ▬▬**
-  > A set of roles that are difficult to group with other roles. They could be expertise or role 
+  > A set of roles that are difficult to group with other roles. They could be an expertise or a role.
   - Alumni 🎓
   - Visitor 🎩
   - Print Master 🏗️
