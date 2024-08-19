@@ -95,14 +95,15 @@ These are tools provided by discord that can help both users and moderators to f
 A list of roles supported by the discord server. The headers should be surrounded by two "▬" in the server to distinguish them from regular roles. They are not meant to be assignable.  
 On the roles that has an emoji present, it is not part of the role title but a way to dictate what should be added to a user's username. The discord bot should automatically assign the emojis when a role changes.
 
-- **▬▬ BTH Employees ▬▬**
+- **▬▬ Admin ▬▬**
+  - Ratministrator
+    > Role dedicated to manage the discord server itself. It is a dangerous role because it has the same privileges as Lab Director and could change anything. This role is on the top of the list so that it has access to change all other roles.
+- **▬▬ Lab Employees ▬▬**
   - Lab Director 🥼
     > Employee responsible for the lab.
   - Lab Researcher 🥼
     > University Professors who are active in creating workshops and making projects.
 - **▬▬ Lab Assistants ▬▬**
-  - Ratministrator 🧀
-    > Role dedicated to manage the discord server itself. It is a dangerous role because it has the same privileges as Lab Director and could change anything.
   - Rat King 👑
   - Lab Rat 🐀
   - Lab Mouse 🐁
@@ -116,16 +117,16 @@ On the roles that has an emoji present, it is not part of the role title but a w
   - Web Study
   - Game Study
   - Other Study
-- **▬▬ Study Year ▬▬**
-  - 20
-  - 21
-  - ...
-    > Perhaps too ambitious. Would be nice to see which year a student began their study.
-- **▬▬ Miscellaneous ▬▬**
-  > A set of roles that are difficult to group with other roles. They could be an expertise or a role.
-  - Alumni 🎓
+- **▬▬ Lab Visitors ▬▬**
+  > Set of roles for members outside the lab. For example, a professor from a different program or an external company employee.
+  - BTH
   - Visitor 🎩
-  - Print Master 🏗️
+- **▬▬ Hobby Groups ▬▬**
+  > A dynamic list of roles for dedicated groups within the lab. Such as hobbyist or participents in weekly activities. The **Hobby Groups** roles is the only set of roles that are expected to grow and shrink over time. The discord bot should have a command to manage these groups.
+  - Ninja Maker/3D Printmaster
+  - Code Crafter
+  - AI Arena
+  - ...
 - **▬▬ Rat King Tools ▬▬**
   > A set of roles that Rat King should manage on the fly. None of them should effect the user experience.
   - Test Subject 🧪
@@ -140,67 +141,68 @@ On the roles that has an emoji present, it is not part of the role title but a w
 
 All roles **not** specified shall have the default role color and keep the extra display options disabled.
 
-- **BTH Employees** has a blue color to represent the university color. _Lab Director_ has a brighter color to signify their importance while _Lab Researcher_ has a darker color. _Lab Director_ always has both roles as _Lab Researcher_ shall be the "Display role members separately from online members" while director does not.
+- **Lab Employees** has a blue color to represent the university color. _Lab Director_ has a brighter color `#6996a2` to signify their importance while _Lab Researcher_ has a darker color `#508593`. _Lab Director_ always has both roles. Only _Lab Researcher_ shall enable the "Display role members separately from online members". The color is based on the university color `#055064` but at 30 and 40 percent brighter respectively.
 - **Lab Assistants** _Lab Rat_ and _Lab Mouse_ shall display role members seperate from others and anyone should be able to _@mention_ the role.
-  - **_Rat King_** shall have a gold color to represent their royalty as well as be part of _Lab Rat_ to be grouped together.
-- **Study Programs** has each field of study represented by a color. Master's has a brighter color of the bachelor's color, this is to follow the similar logic in BTH Employees.
+  - **_Rat King_** shall have a gold color `#FFD700` to represent their royalty as well as be part of _Lab Rat_ to be grouped together.
+- **Study Programs** has each field of study represented by a color. Master's has a brighter color of the bachelor's color, this is to follow the similar logic in **Lab Employees**.
+- **Lab Visitors** with its _BTH_ role has the blue color `#377383` which is 20% brighter version of the university color `#055064`.
 
 ### Role Permissions
 
 If not specified every role has the same permissions as `@everyone`. The exception is the `Ratministrator` role which has the same permissions as `Lab Director`.
 
-| Permission                    | `@everyone` | Mouse | Rat | King | Researcher | Director |
-|:------------------------------|:-----------:|:-----:|:---:|:----:|:----------:|:--------:|
-| **General Permissions**       |             |       |     |      |            |          |
-| View Channels                 |     ✅      |  ✅   | ✅  |  ✅  |    ✅      |    ✅    |
-| Manage Channels               |     ➖      |  ➖   | ➖  |  ➖  |    ➖      |    ✅    |
-| Manage Roles                  |     ➖      |  ➖   | ➖  |  ➖  |    ➖      |    ✅    |
-| Create Expressions            |     ✅      |  ✅   | ✅  |  ✅  |    ✅      |    ✅    |
-| Manage Expressions            |     ➖      |  ➖   | ✅  |  ➖  |    ✅      |    ✅    |
-| View Audit Log                |     ➖      |  ➖   | ➖  |  ➖  |    ➖      |    ✅    |
-| Manage Webhooks               |     ➖      |  ➖   | ➖  |  ➖  |    ➖      |    ✅    |
-| Manage Server                 |     ➖      |  ➖   | ➖  |  ➖  |    ➖      |    ✅    |
-| **Membership Permissions**    |             |       |     |      |            |          |
-| Create Invite                 |     ➖      |  ➖   | ➖  |  ➖  |    ➖      |    ✅    |
-| Change Nickname               |     ➖      |  ➖   | ➖  |  ✅  |    ➖      |    ✅    |
-| Manage Nicknames              |     ➖      |  ➖   | ➖  |  ✅  |    ➖      |    ✅    |
-| Kick Members                  |     ➖      |  ➖   | ✅  |  ➖  |    ✅      |    ✅    |
-| Ban Members                   |     ➖      |  ➖   | ✅  |  ➖  |    ✅      |    ✅    |
-| Timeout Members               |     ➖      |  ✅   | ✅  |  ➖  |    ✅      |    ✅    |
-| **Text Channel Permissions**  |             |       |     |      |            |          |
-| Send Messages                 |     ✅      |  ✅   | ✅  |  ✅  |    ✅      |    ✅    |
-| Send Messages in Threads      |     ✅      |  ✅   | ✅  |  ✅  |    ✅      |    ✅    |
-| Create Public Threads         |     ✅      |  ✅   | ✅  |  ✅  |    ✅      |    ✅    |
-| Create Private Threads        |     ➖      |  ➖   | ➖  |  ✅  |    ➖      |    ✅    |
-| Embed Links                   |     ✅      |  ✅   | ✅  |  ✅  |    ✅      |    ✅    |
-| Attach Files                  |     ✅      |  ✅   | ✅  |  ✅  |    ✅      |    ✅    |
-| Add Reactions                 |     ✅      |  ✅   | ✅  |  ✅  |    ✅      |    ✅    |
-| Use External Emoji            |     ✅      |  ✅   | ✅  |  ✅  |    ✅      |    ✅    |
-| Use External Stickers         |     ✅      |  ✅   | ✅  |  ✅  |    ✅      |    ✅    |
-| Mention `@everyone`, `@here` and All Roles |➖| ➖  | ✅  |  ➖  |    ✅      |    ✅    |
-| Manage Messages               |     ➖      |  ➖   | ✅  |  ✅  |    ✅      |    ✅    |
-| Manage Threads                |     ➖      |  ➖   | ✅  |  ✅  |    ✅      |    ✅    |
-| Read Message History          |     ✅      |  ✅   | ✅  |  ✅  |    ✅      |    ✅    |
-| Send TTS Messages             |     ➖      |  ➖   | ➖  |  ➖  |    ➖      |    ➖    |
-| Send Voice Messages           |     ➖      |  ➖   | ➖  |  ➖  |    ➖      |    ➖    |
-| Create Polls                  |     ✅      |  ✅   | ✅  |  ✅  |    ✅      |    ✅    |
-| **Voice Channel Permissions** |             |       |     |      |            |          |
-| Connect                       |     ✅      |  ✅   | ✅  |  ➖  |    ✅      |    ✅    |
-| Speak                         |     ✅      |  ✅   | ✅  |  ➖  |    ✅      |    ✅    |
-| Video                         |     ✅      |  ✅   | ✅  |  ➖  |    ✅      |    ✅    |
-| Use Soundboard                |     ➖      |  ➖   | ➖  |  ➖  |    ➖      |    ➖    |
-| Use External Sounds           |     ➖      |  ➖   | ➖  |  ➖  |    ➖      |    ➖    |
-| Use Voice Activity            |     ✅      |  ✅   | ✅  |  ➖  |    ✅      |    ✅    |
-| Priority Speaker              |     ➖      |  ➖   | ✅  |  ➖  |    ✅      |    ✅    |
-| Mute Members                  |     ➖      |  ✅   | ✅  |  ➖  |    ✅      |    ✅    |
-| Deafen Members                |     ➖      |  ➖   | ✅  |  ➖  |    ➖      |    ✅    |
-| Move Members                  |     ➖      |  ➖   | ✅  |  ➖  |    ➖      |    ✅    |
-| Set Voice Channel Status      |     ✅      |  ✅   | ✅  |  ➖  |    ✅      |    ✅    |
-| **Apps Permissions**          |             |       |     |      |            |          |
-| Use Application Commands      |     ✅      |  ✅   | ✅  |  ➖  |    ✅      |    ✅    |
-| Use Activities                |     ✅      |  ✅   | ✅  |  ➖  |    ✅      |    ✅    |
-| Use External Apps             |     ✅      |  ✅   | ✅  |  ➖  |    ✅      |    ✅    |
-| **Events Permissions**        |             |       |     |      |            |          |
-| Create Events                 |     ✅      |  ✅   | ✅  |  ✅  |    ✅      |    ✅    |
-| Manage Events                 |     ➖      |  ➖   | ✅  |  ✅  |    ✅      |    ✅    |
-| **Administrator**             |     ➖      |  ➖   | ➖  |  ➖  |    ➖      |    ✅    |
+| Permission                                 | `@everyone` | Mouse |  Rat  | King  | Researcher | Director |
+| :----------------------------------------- | :---------: | :---: | :---: | :---: | :--------: | :------: |
+| **General Permissions**                    |             |       |       |       |            |          |
+| View Channels                              |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Manage Channels                            |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
+| Manage Roles                               |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
+| Create Expressions                         |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Manage Expressions                         |      ➖      |   ➖   |   ✅   |   ➖   |     ✅      |    ✅     |
+| View Audit Log                             |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
+| Manage Webhooks                            |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
+| Manage Server                              |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
+| **Membership Permissions**                 |             |       |       |       |            |          |
+| Create Invite                              |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
+| Change Nickname                            |      ➖      |   ➖   |   ➖   |   ✅   |     ➖      |    ✅     |
+| Manage Nicknames                           |      ➖      |   ➖   |   ➖   |   ✅   |     ➖      |    ✅     |
+| Kick Members                               |      ➖      |   ➖   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Ban Members                                |      ➖      |   ➖   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Timeout Members                            |      ➖      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| **Text Channel Permissions**               |             |       |       |       |            |          |
+| Send Messages                              |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Send Messages in Threads                   |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Create Public Threads                      |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Create Private Threads                     |      ➖      |   ➖   |   ➖   |   ✅   |     ➖      |    ✅     |
+| Embed Links                                |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Attach Files                               |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Add Reactions                              |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Use External Emoji                         |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Use External Stickers                      |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Mention `@everyone`, `@here` and All Roles |      ➖      |   ➖   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Manage Messages                            |      ➖      |   ➖   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Manage Threads                             |      ➖      |   ➖   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Read Message History                       |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Send TTS Messages                          |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ➖     |
+| Send Voice Messages                        |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ➖     |
+| Create Polls                               |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| **Voice Channel Permissions**              |             |       |       |       |            |          |
+| Connect                                    |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Speak                                      |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Video                                      |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Use Soundboard                             |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ➖     |
+| Use External Sounds                        |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ➖     |
+| Use Voice Activity                         |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Priority Speaker                           |      ➖      |   ➖   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Mute Members                               |      ➖      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Deafen Members                             |      ➖      |   ➖   |   ✅   |   ➖   |     ➖      |    ✅     |
+| Move Members                               |      ➖      |   ➖   |   ✅   |   ➖   |     ➖      |    ✅     |
+| Set Voice Channel Status                   |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| **Apps Permissions**                       |             |       |       |       |            |          |
+| Use Application Commands                   |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Use Activities                             |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Use External Apps                          |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| **Events Permissions**                     |             |       |       |       |            |          |
+| Create Events                              |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Manage Events                              |      ➖      |   ➖   |   ✅   |   ✅   |     ✅      |    ✅     |
+| **Administrator**                          |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
