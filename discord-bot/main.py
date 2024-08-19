@@ -2,7 +2,7 @@ import time
 import datetime
 import discord
 from discord import app_commands
-from utility import get_env_variable
+from utility import get_env_variable, user_has_access
 
 
 # Code inpired from: https://github.com/therealOri/TheAdministrator/blob/c2e74191eef7cf20960e23cb27e5b6004145045c/admin.py#L122
@@ -19,13 +19,14 @@ class Bot(discord.Client):
         # This copies the global commands over to your guild.
         self.tree.copy_global_to(guild=self.guild)
         await self.tree.sync(guild=self.guild)
-    
-
 
 intents = discord.Intents.default()
 intents.message_content = True
 bot = Bot(intents=intents)
 # +++++++++++ Client Setup +++++++++++ #
+
+ADMIN_ROLE_ID = get_env_variable('ADMIN_ROLE_ID', required=True)
+STAFF_ROLE_ID = get_env_variable('STAFF_ROLE_ID', required=True)
 
 @bot.tree.command(description='Shows you what commands you can use.')
 async def help(interaction: discord.Interaction):
@@ -53,7 +54,8 @@ async def github(interaction: discord.Interaction):
 
 @bot.tree.command(description='Send a message to the channel.')
 async def message(interaction: discord.Interaction, content: str):
-    await interaction.response.send_message(content, ephemeral=True)
+    if await user_has_access(interaction, ADMIN_ROLE_ID, minimum=True):
+        await interaction.response.send_message(content, ephemeral=True)
 
 @bot.tree.command(description='Create a thread in the current channel.')
 async def thread(interaction: discord.Interaction, name: str):
