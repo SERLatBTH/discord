@@ -1,5 +1,14 @@
 # Oracle
 
+- [Oracle](#oracle)
+  - [Server Structure](#server-structure)
+    - [Formatting](#formatting)
+    - [Community Tools](#community-tools)
+    - [Server Structure Oracle](#server-structure-oracle)
+  - [Server Roles](#server-roles)
+    - [Role Display](#role-display)
+    - [Role Permissions](#role-permissions)
+
 This document defines structures for how the Discord Server shall be configured. Including comments with reasoning behind selected configuration options. Acts as a backup if the Discord Server gets compromised or an authorized user changes unintended settings without documentation.
 
 ## Server Structure
@@ -45,8 +54,6 @@ These are tools provided by discord that can help both users and moderators to f
     > Includes opening hours, what food to bring, the user must behave well, etc. The user needs to accept the terms to access the discord server.
   - **announcements**
   - **links**
-  - **roles**
-    > Could be replaced with _Onboarding_ from [Community Tools](#community-tools)
 - **`GENERAL`**
   - **general**
   - **memes**
@@ -77,5 +84,125 @@ These are tools provided by discord that can help both users and moderators to f
     - _Open House_
     - _Lab Meeting 2024-08-13_
       > A channel that acts as both announcements and events in one. Admins can announce upcoming meetings. Moderators can create threads to plan upcoming happenings. Here lies an opportunity for the discord bot to summarize past meetings to create an opening speech for a new meeting. Perhaps `/meeting` is a suitable command.
-  - **announcements** (Subscribed to discord newsletter)
-    > Mainly a channel for admins to see new discord features, maybe can be applied on a thread or removed as the channel itself won't be too useful.
+  - **discord-logs** (Subscribed to discord newsletter)
+    > Mainly a channel for admins to see new discord features. Could include threads that has the purpose of logging the server or new members joining.
+    - _Member Log_
+    - _Change Log_
+    - _Bot Activity Log_
+
+## Server Roles
+
+A list of roles supported by the discord server. The headers should be surrounded by two "▬" in the server to distinguish them from regular roles. They are not meant to be assignable.  
+On the roles that has an emoji present, it is not part of the role title but a way to dictate what should be added to a user's username. The discord bot should automatically assign the emojis when a role changes.
+
+- **▬▬ Admin ▬▬**
+  - Ratministrator
+    > Role dedicated to manage the discord server itself. It is a dangerous role because it has the same privileges as Lab Director and could change anything. This role is on the top of the list so that it has access to change all other roles.
+- **▬▬ Lab Employees ▬▬**
+  - Lab Director 🥼
+    > Employee responsible for the lab.
+  - Lab Researcher 🥼
+    > University Professors who are active in creating workshops and making projects.
+- **▬▬ Lab Assistants ▬▬**
+  - Rat King 👑
+  - Lab Rat 🐀
+  - Lab Mouse 🐁
+  - Lab Escapee 🚪
+- **▬▬ Study Programs ▬▬**
+  - SE-BSc
+  - SE-MSc
+  - Sec-BSc
+  - Sec-MSc
+  - AI Study
+  - Web Study
+  - Game Study
+  - Other Study
+- **▬▬ Lab Visitors ▬▬**
+  > Set of roles for members outside the lab. For example, a professor from a different program or an external company employee.
+  - BTH
+  - Visitor 🎩
+- **▬▬ Hobby Groups ▬▬**
+  > A dynamic list of roles for dedicated groups within the lab. Such as hobbyist or participents in weekly activities. The **Hobby Groups** roles is the only set of roles that are expected to grow and shrink over time. The discord bot should have a command to manage these groups.
+  - Ninja Maker/3D Printmaster
+  - Code Crafter
+  - AI Arena
+  - ...
+- **▬▬ Rat King Tools ▬▬**
+  > A set of roles that Rat King should manage on the fly. None of them should effect the user experience.
+  - Test Subject 🧪
+    > A role given to newcomers. Will be removed after they've accepted the `#rules`.
+  - Lendmaster 📤
+  - Borrower 📥
+    > Roles given to the labrat lending and the user recieving respectevely.
+  - Study Curious
+    > A role for displaying all courses and program information.
+
+### Role Display
+
+All roles **not** specified shall have the default role color and keep the extra display options disabled.
+
+- **Lab Employees** has a blue color to represent the university color. _Lab Director_ has a brighter color `#6996a2` to signify their importance while _Lab Researcher_ has a darker color `#508593`. _Lab Director_ always has both roles. Only _Lab Researcher_ shall enable the "Display role members separately from online members". The color is based on the university color `#055064` but at 30 and 40 percent brighter respectively.
+- **Lab Assistants** _Lab Rat_ and _Lab Mouse_ shall display role members seperate from others and anyone should be able to _@mention_ the role.
+  - **_Rat King_** shall have a gold color `#FFD700` to represent their royalty as well as be part of _Lab Rat_ to be grouped together.
+- **Study Programs** has each field of study represented by a color. Master's has a brighter color of the bachelor's color, this is to follow the similar logic in **Lab Employees**.
+- **Lab Visitors** with its _BTH_ role has the blue color `#377383` which is 20% brighter version of the university color `#055064`.
+
+### Role Permissions
+
+If not specified every role has the same permissions as `@everyone`. The exception is the `Ratministrator` role which has the same permissions as `Lab Director`.
+
+| Permission                                 | `@everyone` | Mouse |  Rat  | King  | Researcher | Director |
+| :----------------------------------------- | :---------: | :---: | :---: | :---: | :--------: | :------: |
+| **General Permissions**                    |             |       |       |       |            |          |
+| View Channels                              |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Manage Channels                            |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
+| Manage Roles                               |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
+| Create Expressions                         |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Manage Expressions                         |      ➖      |   ➖   |   ✅   |   ➖   |     ✅      |    ✅     |
+| View Audit Log                             |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
+| Manage Webhooks                            |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
+| Manage Server                              |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
+| **Membership Permissions**                 |             |       |       |       |            |          |
+| Create Invite                              |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
+| Change Nickname                            |      ➖      |   ➖   |   ➖   |   ✅   |     ➖      |    ✅     |
+| Manage Nicknames                           |      ➖      |   ➖   |   ➖   |   ✅   |     ➖      |    ✅     |
+| Kick Members                               |      ➖      |   ➖   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Ban Members                                |      ➖      |   ➖   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Timeout Members                            |      ➖      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| **Text Channel Permissions**               |             |       |       |       |            |          |
+| Send Messages                              |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Send Messages in Threads                   |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Create Public Threads                      |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Create Private Threads                     |      ➖      |   ➖   |   ➖   |   ✅   |     ➖      |    ✅     |
+| Embed Links                                |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Attach Files                               |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Add Reactions                              |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Use External Emoji                         |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Use External Stickers                      |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Mention `@everyone`, `@here` and All Roles |      ➖      |   ➖   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Manage Messages                            |      ➖      |   ➖   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Manage Threads                             |      ➖      |   ➖   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Read Message History                       |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Send TTS Messages                          |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ➖     |
+| Send Voice Messages                        |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ➖     |
+| Create Polls                               |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| **Voice Channel Permissions**              |             |       |       |       |            |          |
+| Connect                                    |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Speak                                      |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Video                                      |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Use Soundboard                             |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ➖     |
+| Use External Sounds                        |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ➖     |
+| Use Voice Activity                         |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Priority Speaker                           |      ➖      |   ➖   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Mute Members                               |      ➖      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Deafen Members                             |      ➖      |   ➖   |   ✅   |   ➖   |     ➖      |    ✅     |
+| Move Members                               |      ➖      |   ➖   |   ✅   |   ➖   |     ➖      |    ✅     |
+| Set Voice Channel Status                   |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| **Apps Permissions**                       |             |       |       |       |            |          |
+| Use Application Commands                   |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Use Activities                             |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Use External Apps                          |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| **Events Permissions**                     |             |       |       |       |            |          |
+| Create Events                              |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Manage Events                              |      ➖      |   ➖   |   ✅   |   ✅   |     ✅      |    ✅     |
+| **Administrator**                          |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
