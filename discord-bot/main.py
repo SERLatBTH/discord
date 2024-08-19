@@ -55,7 +55,25 @@ async def github(interaction: discord.Interaction):
 @bot.tree.command(description='Send a message to the channel.')
 async def message(interaction: discord.Interaction, content: str):
     if await user_has_access(interaction, ADMIN_ROLE_ID, minimum=True):
-        await interaction.response.send_message(content, ephemeral=True)
+        await interaction.response.send_message(content, ephemeral=False)
+        
+@bot.tree.command(description='Send a message to the channel.')
+async def edit(interaction: discord.Interaction, target_message_id: str):
+    if await user_has_access(interaction, ADMIN_ROLE_ID, minimum=True):        
+        try:
+            target_message = await interaction.channel.fetch_message(int(target_message_id))
+            await interaction.response.send_message("Editing message...", ephemeral=True)
+            await interaction.followup.send("Please enter the new content for the message:", ephemeral=True)
+            def check(m):
+                return m.author == interaction.user and m.channel == interaction.channel
+            new_message = await bot.wait_for('message', check=check)
+
+            await target_message.edit(content=new_message.content)
+            await interaction.followup.send(f"Message edited: {target_message.jump_url}", ephemeral=True)
+            await new_message.delete()
+
+        except discord.NotFound:
+            await interaction.response.send_message(f"Message not found with ID: {target_message_id}", ephemeral=True)
 
 @bot.tree.command(description='Create a thread in the current channel.')
 async def thread(interaction: discord.Interaction, name: str):
