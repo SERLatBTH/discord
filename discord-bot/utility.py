@@ -1,4 +1,5 @@
 import os
+import asyncio
 import discord
 from dotenv import load_dotenv
 
@@ -70,3 +71,32 @@ async def user_has_access(
         return False
     else:
         return True
+
+async def user_has_confirmed(interaction: discord.Interaction, client: discord.Client):
+    """Check if the user has confirmed the action by typing 'yes' or 'no'.
+
+    Args:
+        interaction (discord.Interaction): The interaction object.
+        client (discord.Client): The client object.
+
+    Returns:
+        bool: True if the user has confirmed, False otherwise.
+    """
+    def check(m):
+        return m.author == interaction.user and m.channel == interaction.channel
+
+    try:
+        message = await interaction.channel.send("Please type `yes` or `no` to confirm.", delete_after=15)
+        response = await interaction.channel.fetch_message(message.id)
+        response = await client.wait_for('message', check=check, timeout=15)
+        if response.content.lower() == 'yes':
+            await response.delete()
+            await message.delete()
+            return True
+        else:
+            await interaction.followup.send("Action cancelled.", ephemeral=True)
+            await message.delete()
+            return False
+    except asyncio.TimeoutError:
+        await interaction.followup.send("Action timed out.", ephemeral=True)
+        return False

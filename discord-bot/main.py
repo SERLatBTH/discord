@@ -53,7 +53,11 @@ async def github(interaction: discord.Interaction):
     await interaction.response.send_message(view=view, ephemeral=True)
 
 @bot.tree.command(description='Send a message to the channel.')
-async def message(interaction: discord.Interaction, content: str):
+async def confirm(interaction: discord.Interaction):
+    await interaction.response.send_message("Amazing", ephemeral=True)
+    if await user_has_confirmed(interaction, bot):
+        await interaction.followup.send("Confirmed", ephemeral=True)
+
     if await user_has_access(interaction, ADMIN_ROLE_ID, minimum=True):
         await interaction.response.send_message(content, ephemeral=False)
         
