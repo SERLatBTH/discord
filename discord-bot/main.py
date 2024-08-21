@@ -1,8 +1,9 @@
 import time
 import datetime
 import discord
+from typing import Literal, Optional
 from discord import app_commands
-from utility import get_env_variable, user_has_access
+from utility import get_env_variable, user_has_access, user_has_confirmed
 
 
 # Code inpired from: https://github.com/therealOri/TheAdministrator/blob/c2e74191eef7cf20960e23cb27e5b6004145045c/admin.py#L122
@@ -19,6 +20,10 @@ class Bot(discord.Client):
         # This copies the global commands over to your guild.
         self.tree.copy_global_to(guild=self.guild)
         await self.tree.sync(guild=self.guild)
+
+    async def on_ready(self):
+        print(f'{self.user} has connected to Discord!')
+        await self.setup_hook()
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -58,26 +63,86 @@ async def confirm(interaction: discord.Interaction):
     if await user_has_confirmed(interaction, bot):
         await interaction.followup.send("Confirmed", ephemeral=True)
 
+@bot.tree.command(description="Command me to send, change or delete my messages.")
+@app_commands.describe(action="Select the type of action you want to perform.")
+@app_commands.describe(target="Select the target ID to send, edit or delete.")
+@app_commands.describe(source="Copy or move from source message ID to target channel ID.")
+async def message(
+    interaction: discord.Interaction, 
+    action: Literal["send", "edit", "delete", "copy", "move"], 
+    target: Optional[str] = None, 
+    source: Optional[str] = None):
     if await user_has_access(interaction, ADMIN_ROLE_ID, minimum=True):
-        await interaction.response.send_message(content, ephemeral=False)
-        
-@bot.tree.command(description='Send a message to the channel.')
-async def edit(interaction: discord.Interaction, target_message_id: str):
-    if await user_has_access(interaction, ADMIN_ROLE_ID, minimum=True):        
-        try:
-            target_message = await interaction.channel.fetch_message(int(target_message_id))
-            await interaction.response.send_message("Editing message...", ephemeral=True)
-            await interaction.followup.send("Please enter the new content for the message:", ephemeral=True)
-            def check(m):
-                return m.author == interaction.user and m.channel == interaction.channel
+        def check(m):
+            return m.author == interaction.user and m.channel == interaction.channel
+        await interaction.response.send_message(f"You selected to `{action}` a message", ephemeral=True)
+        if action == "send":
+            if source:
+                await interaction.followup.send("Source message ID not required for sending a message.", ephemeral=True)
+                return
+            if target is None:
+                await interaction.followup.send("Target channel ID not found. Message will be sent here instead.", ephemeral=True)
+                target = interaction.channel.id
+            try:
+                target_channel = bot.get_channel(int(target))
+            except ValueError:
+                await interaction.followup.send("Invalid channel ID.", ephemeral=True)
+                return
+            await interaction.followup.send("Please enter the content for the message:", ephemeral=True)
             new_message = await bot.wait_for('message', check=check)
-
-            await target_message.edit(content=new_message.content)
-            await interaction.followup.send(f"Message edited: {target_message.jump_url}", ephemeral=True)
+            await target_channel.send(new_message.content)
+            await interaction.followup.send(f"Message sent to {target_channel.mention}", ephemeral=True)
             await new_message.delete()
 
-        except discord.NotFound:
-            await interaction.response.send_message(f"Message not found with ID: {target_message_id}", ephemeral=True)
+        elif action in ['edit', 'delete']:
+            if target is None and source is None:
+                await interaction.followup.send("Target/Source message ID not found.", ephemeral=True)
+                return
+            elif target and source:
+                await interaction.followup.send("Target and Source should not both be defined! Use only one!", ephemeral=True)
+                return
+            else:
+                try:
+                    target_message = await interaction.channel.fetch_message(int(target or source))
+                except (ValueError, discord.NotFound):
+                    await interaction.followup.send("Invalid message ID.", ephemeral=True)
+                    return
+                if target_message.author != bot.user:
+                    await interaction.followup.send("You can only edit/delete messages created by me.", ephemeral=True)
+                    return
+            if action == 'edit':
+                await interaction.followup.send(f"Editing {target_message.jump_url}...\nYou can right click a message and select 'Copy Text' to quickly edit", ephemeral=True)
+                await interaction.followup.send("Please enter the new content for the message:", ephemeral=True)
+                new_message = await bot.wait_for('message', check=check)
+                await target_message.edit(content=new_message.content)
+                await interaction.followup.send(f"Message edited: {target_message.jump_url}", ephemeral=True)
+                await new_message.delete()
+            elif action == 'delete':
+                if await user_has_confirmed(interaction, bot, content=f"Are you sure you want to delete {target_message.jump_url}?"):
+                    await interaction.followup.send(f"Message deleted: \n{target_message.content}", ephemeral=True)
+                    await target_message.delete()
+
+        elif action in ['copy', 'move']:
+            if source is None:
+                await interaction.followup.send("Source message ID missing.", ephemeral=True)
+                return
+            if target is None:
+                await interaction.followup.send("Target channel ID not found. Message will be sent here instead.", ephemeral=True)
+                target = interaction.channel.id
+            try:
+                source_message = await interaction.channel.fetch_message(int(source))
+                target_channel = bot.get_channel(int(target))
+            except (ValueError, discord.NotFound):
+                await interaction.followup.send("Invalid message ID or channel ID.", ephemeral=True)
+                return
+            if action == 'copy':
+                await target_channel.send(source_message.content)
+                await interaction.followup.send(f"Message copied to {target_channel.mention}", ephemeral=True)
+            elif action == 'move':
+                if await user_has_confirmed(interaction, bot, content=f"Are you sure you want to move {source_message.jump_url} to {target_channel.mention}?\nThe original message will be deleted!"):
+                    await target_channel.send(source_message.content)
+                    await source_message.delete()
+                    await interaction.followup.send(f"Message moved to {target_channel.mention}", ephemeral=True)
 
 @bot.tree.command(description='Create a thread in the current channel.')
 async def thread(interaction: discord.Interaction, name: str):
