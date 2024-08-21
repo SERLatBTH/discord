@@ -69,7 +69,7 @@ async def user_has_access(
 
     return True
 
-async def user_has_confirmed(interaction: discord.Interaction, client: discord.Client, content: str = None):
+async def user_has_confirmed(interaction: discord.Interaction, client: discord.Client, content: str = "empty content") -> bool:
     """Check if the user has confirmed the action by typing 'yes' or 'no'.
 
     Args:
@@ -87,14 +87,17 @@ async def user_has_confirmed(interaction: discord.Interaction, client: discord.C
         message = await interaction.channel.send(content+"\nPlease type `yes` or `no` to confirm.", delete_after=15)
         response = await interaction.channel.fetch_message(message.id)
         response = await client.wait_for('message', check=check, timeout=15)
-        if response.content.lower() == 'yes':
-            await response.delete()
-            await message.delete()
-            return True
-        else:
+
+        is_confirm = response.content.lower() == 'yes'
+
+        if not is_confirm:
             await interaction.followup.send("Action cancelled.", ephemeral=True)
             await message.delete()
             return False
+
+        await response.delete()
+        await message.delete()
+        return True
     except asyncio.TimeoutError:
         await interaction.followup.send("Action timed out.", ephemeral=True)
         return False
