@@ -69,7 +69,12 @@ async def user_has_access(
 
     return True
 
-async def user_has_confirmed(interaction: discord.Interaction, client: discord.Client, content: str = "empty content") -> bool:
+
+async def user_has_confirmed(
+    interaction: discord.Interaction,
+    client: discord.Client,
+    content: str = "empty content",
+) -> bool:
     """Check if the user has confirmed the action by typing 'yes' or 'no'.
 
     Args:
@@ -79,16 +84,20 @@ async def user_has_confirmed(interaction: discord.Interaction, client: discord.C
     Returns:
         bool: True if the user has confirmed, False otherwise.
     """
+
     def check(m):
         return m.author == interaction.user and m.channel == interaction.channel
+
     content = content or "Are you sure you want to proceed?"
 
     try:
-        message = await interaction.channel.send(content+"\nPlease type `yes` or `no` to confirm.", delete_after=15)
+        message = await interaction.channel.send(
+            content + "\nPlease type `yes` or `no` to confirm.", delete_after=15
+        )
         response = await interaction.channel.fetch_message(message.id)
-        response = await client.wait_for('message', check=check, timeout=15)
+        response = await client.wait_for("message", check=check, timeout=15)
 
-        is_confirm = response.content.lower() == 'yes'
+        is_confirm = response.content.lower() == "yes"
 
         if not is_confirm:
             await interaction.followup.send("Action cancelled.", ephemeral=True)
