@@ -1,7 +1,7 @@
 import time
-import datetime
-import discord
 from typing import Literal, Optional
+
+import discord
 from discord import app_commands
 from utility import get_env_variable, user_has_access, user_has_confirmed
 
@@ -68,9 +68,9 @@ async def confirm(interaction: discord.Interaction):
 @app_commands.describe(target="Select the target ID to send, edit or delete.")
 @app_commands.describe(source="Copy or move from source message ID to target channel ID.")
 async def message(
-    interaction: discord.Interaction, 
-    action: Literal["send", "edit", "delete", "copy", "move"], 
-    target: Optional[str] = None, 
+    interaction: discord.Interaction,
+    action: Literal["send", "edit", "delete", "copy", "move"],
+    target: Optional[str] = None,
     source: Optional[str] = None):
     if await user_has_access(interaction, ADMIN_ROLE_ID, minimum=True):
         def check(m):
