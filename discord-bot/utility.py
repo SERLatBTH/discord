@@ -1,5 +1,6 @@
-import os
 import asyncio
+import os
+
 import discord
 from dotenv import load_dotenv
 
@@ -30,7 +31,7 @@ def get_env_variable(name, default=None, required=False):
 
 async def user_has_access(
     interaction: discord.Interaction, role_id: int, minimum: bool = False
-):
+) -> bool:
     """Check if the user has the required role to access the command.
 
     Args:
@@ -43,34 +44,30 @@ async def user_has_access(
     """
 
     try:
-        target_role = interaction.guild.get_role(int(role_id))
+        target_role = interaction.guild.get_role(role_id)
         if target_role is None:
-            raise NameError(
-                f"{role_id} is not a valid role id. Does it exist in the server?"
-            )
+            print(f"{role_id} is not a valid role id. Does it exist in the server?")
+            return False
     except ValueError:
-        raise NameError(f"{role_id} is not a valid role id. It must be an integer.")
+        print(f"{role_id} is not a valid role id. It must be an integer.")
+        return False
 
-    fail = False
-    message = ""
     command = interaction.data["name"]
 
-    if minimum:
-        fail = interaction.user.top_role < target_role
-        message = f"You don't have permission for /{command}, {target_role.mention} or higher is required"
-    else:
-        fail = target_role not in interaction.user.roles
-        message = f"You don't have permission for /{command}, {target_role.mention} is required"
+    has_no_permission_level = interaction.user.top_role < target_role
+    has_no_permission_role = target_role not in interaction.user.roles
+    failed_permission = (minimum and has_no_permission_level) or has_no_permission_role
 
-    if fail:
+    if failed_permission:
+        message = f"You don't have permission for /{command}, {target_role.mention} or higher is required"
         await interaction.response.send_message(
             message,
             ephemeral=True,
             delete_after=15,
         )
         return False
-    else:
-        return True
+
+    return True
 
 async def user_has_confirmed(interaction: discord.Interaction, client: discord.Client, content: str = None):
     """Check if the user has confirmed the action by typing 'yes' or 'no'.
