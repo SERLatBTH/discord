@@ -66,7 +66,7 @@ async def user_has_access(
     failed_permission = (minimum and has_no_permission_level) or has_no_permission_role
 
     if failed_permission:
-        message = f"You don't have permission for /{command}, {target_role.mention} {"or higher" if minimum else ""} is required"
+        message = f"You don't have permission for /{command}, {target_role.mention} {'or higher' if minimum else ''} is required"
         await interaction.response.send_message(
             message,
             ephemeral=True,
@@ -79,29 +79,28 @@ async def user_has_access(
 
 async def user_has_confirmed(
     interaction: discord.Interaction,
-    client: discord.Client,
+    bot: discord.Client,
     content: str = "Are you sure you want to proceed?",
 ) -> bool:
     """Check if the user has confirmed the action by typing 'yes' or 'no'.
 
     Args:
         interaction (discord.Interaction): The interaction object.
-        client (discord.Client): The client object.
+        bot (discord.Client): The bot object.
         content (str, optional): The message to display to the user. Defaults to "Are you sure you want to proceed?".
 
     Returns:
         bool: True if the user has confirmed, False otherwise.
     """
 
-    def is_author_same_as_user(message):
-        return message.author == interaction.user and message.channel == interaction.channel
+    is_author_same_as_user = lambda message: message.author == interaction.user and message.channel == interaction.channel
 
     try:
         message = await interaction.channel.send(
             content + "\nPlease type `yes` or `no` to confirm.", delete_after=15
         )
         response = await interaction.channel.fetch_message(message.id)
-        response = await client.wait_for("message", check=is_author_same_as_user, timeout=15)
+        response = await bot.wait_for("message", check=is_author_same_as_user, timeout=15)
 
         is_confirm = response.content.lower() == "yes"
 
