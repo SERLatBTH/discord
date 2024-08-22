@@ -1,5 +1,6 @@
-import discord
 from typing import Optional, Tuple, Union
+
+import discord
 from utility import user_has_confirmed
 
 
