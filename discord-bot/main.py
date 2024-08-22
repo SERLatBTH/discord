@@ -1,8 +1,10 @@
 import time
-import datetime
+from typing import Literal, Optional
+
 import discord
 from discord import app_commands
-from utility import get_env_variable
+from utility import get_env_variable, user_has_access, user_has_confirmed
+import commands as Command
 
 
 # Code inpired from: https://github.com/therealOri/TheAdministrator/blob/c2e74191eef7cf20960e23cb27e5b6004145045c/admin.py#L122
@@ -19,13 +21,18 @@ class Bot(discord.Client):
         # This copies the global commands over to your guild.
         self.tree.copy_global_to(guild=self.guild)
         await self.tree.sync(guild=self.guild)
-    
 
+    async def on_ready(self):
+        print(f'{self.user} has connected to Discord!')
+        await self.setup_hook()
 
 intents = discord.Intents.default()
 intents.message_content = True
 bot = Bot(intents=intents)
 # +++++++++++ Client Setup +++++++++++ #
+
+ADMIN_ROLE_ID = get_env_variable('ADMIN_ROLE_ID', required=True)
+STAFF_ROLE_ID = get_env_variable('STAFF_ROLE_ID', required=True)
 
 @bot.tree.command(description='Shows you what commands you can use.')
 async def help(interaction: discord.Interaction):
@@ -52,8 +59,35 @@ async def github(interaction: discord.Interaction):
     await interaction.response.send_message(view=view, ephemeral=True)
 
 @bot.tree.command(description='Send a message to the channel.')
-async def message(interaction: discord.Interaction, content: str):
-    await interaction.response.send_message(content, ephemeral=True)
+async def confirm(interaction: discord.Interaction):
+    await interaction.response.send_message("Amazing", ephemeral=True)
+    if await user_has_confirmed(interaction, bot):
+        await interaction.followup.send("Confirmed", ephemeral=True)
+
+@bot.tree.command(description="Command me to send, change or delete my messages.")
+@app_commands.describe(action="Select the type of action you want to perform.")
+@app_commands.describe(target="Select the target ID to send, edit or delete.")
+@app_commands.describe(source="Copy or move from source message ID to target channel ID.")
+async def message(
+    interaction: discord.Interaction,
+    action: Literal["send", "edit", "delete", "copy", "move"],
+    target: Optional[str] = None,
+    source: Optional[str] = None):
+    if not await user_has_access(interaction, ADMIN_ROLE_ID, minimum=True):
+        return
+    
+    message = Command.Message(bot=bot, interaction=interaction)
+    await interaction.response.send_message(f"You selected to `{action}` a message", ephemeral=True)
+    if action == "send":
+        await message.send(target, source)
+    elif action == 'edit':
+        await message.edit(target, source)
+    elif action == 'delete':
+        await message.delete(target, source)
+    elif action == 'copy':
+        await message.copy(target, source)
+    elif action == 'move':
+        await message.move(target, source)
 
 @bot.tree.command(description='Create a thread in the current channel.')
 async def thread(interaction: discord.Interaction, name: str):
