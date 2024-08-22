@@ -3,6 +3,7 @@ import os
 
 import discord
 from dotenv import load_dotenv
+from typing import Protocol, runtime_checkable
 
 load_dotenv()
 
@@ -28,28 +29,34 @@ def get_env_variable(name, default=None, required=False):
             raise NameError(f"{name} environment variable is missing and is required.")
         return default
 
+@runtime_checkable
+class SupportsIntCast(Protocol):
+    def __int__(self) -> int:
+        ...
+
 
 async def user_has_access(
-    interaction: discord.Interaction, role_id: int, minimum: bool = False
+    interaction: discord.Interaction, role_id: SupportsIntCast, minimum: bool = False
 ) -> bool:
     """Check if the user has the required role to access the command.
 
     Args:
         interaction (discord.Interaction): The interaction object.
-        role_id (int): The role ID to check.
+        role_id (int): The role id required to access the command.
         minimum (bool, optional): If True, checks if the user has a role equal to or higher than the target role.
 
     Returns:
         bool: True if the user has the role, False otherwise.
     """
-
     try:
-        target_role = interaction.guild.get_role(role_id)
-        if target_role is None:
-            print(f"{role_id} is not a valid role id. Does it exist in the server?")
-            return False
+        role_id = int(role_id)
     except ValueError:
         print(f"{role_id} is not a valid role id. It must be an integer.")
+        return False
+
+    target_role = interaction.guild.get_role(role_id)
+    if target_role is None:
+        print(f"{role_id} is not a valid role id. Does it exist in the server?")
         return False
 
     command = interaction.data["name"]
@@ -59,7 +66,7 @@ async def user_has_access(
     failed_permission = (minimum and has_no_permission_level) or has_no_permission_role
 
     if failed_permission:
-        message = f"You don't have permission for /{command}, {target_role.mention} or higher is required"
+        message = f"You don't have permission for /{command}, {target_role.mention} {"or higher" if minimum else ""} is required"
         await interaction.response.send_message(
             message,
             ephemeral=True,
@@ -73,29 +80,28 @@ async def user_has_access(
 async def user_has_confirmed(
     interaction: discord.Interaction,
     client: discord.Client,
-    content: str = "empty content",
+    content: str = "Are you sure you want to proceed?",
 ) -> bool:
     """Check if the user has confirmed the action by typing 'yes' or 'no'.
 
     Args:
         interaction (discord.Interaction): The interaction object.
         client (discord.Client): The client object.
+        content (str, optional): The message to display to the user. Defaults to "Are you sure you want to proceed?".
 
     Returns:
         bool: True if the user has confirmed, False otherwise.
     """
 
-    def check(m):
-        return m.author == interaction.user and m.channel == interaction.channel
-
-    content = content or "Are you sure you want to proceed?"
+    def is_author_same_as_user(message):
+        return message.author == interaction.user and message.channel == interaction.channel
 
     try:
         message = await interaction.channel.send(
             content + "\nPlease type `yes` or `no` to confirm.", delete_after=15
         )
         response = await interaction.channel.fetch_message(message.id)
-        response = await client.wait_for("message", check=check, timeout=15)
+        response = await client.wait_for("message", check=is_author_same_as_user, timeout=15)
 
         is_confirm = response.content.lower() == "yes"
 
