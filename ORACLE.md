@@ -9,6 +9,12 @@
     - [Role Display](#role-display)
     - [Role Permissions](#role-permissions)
   - [Server Rules](#server-rules)
+  - [Server Onboarding](#server-onboarding)
+    - [1. Safety Check](#1-safety-check)
+    - [2. Deafult Channels](#2-deafult-channels)
+    - [3. Customization Questions](#3-customization-questions)
+    - [4. Server Guide](#4-server-guide)
+    - [5. Review](#5-review)
 
 This document defines structures for how the Discord Server shall be configured. Including comments with reasoning behind selected configuration options. Acts as a backup if the Discord Server gets compromised or an authorized user changes unintended settings without documentation.
 
@@ -163,12 +169,12 @@ If not specified every role has the same permissions as `@everyone`. The excepti
 | **General Permissions**                    |             |       |       |       |            |          |
 | View Channels                              |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
 | Manage Channels                            |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
-| Manage Roles                               |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
-| Create Expressions                         |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Manage Roles                               |      ➖      |   ➖   |   ➖   |   ✅   |     ➖      |    ✅     |
+| Create Expressions                         |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
 | Manage Expressions                         |      ➖      |   ➖   |   ✅   |   ➖   |     ✅      |    ✅     |
 | View Audit Log                             |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
 | Manage Webhooks                            |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
-| Manage Server                              |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
+| Manage Server                              |      ➖      |   ➖   |   ➖   |   ✅   |     ➖      |    ✅     |
 | **Membership Permissions**                 |             |       |       |       |            |          |
 | Create Invite                              |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
 | Change Nickname                            |      ➖      |   ➖   |   ➖   |   ✅   |     ➖      |    ✅     |
@@ -212,7 +218,7 @@ If not specified every role has the same permissions as `@everyone`. The excepti
 | **Events Permissions**                     |             |       |       |       |            |          |
 | Create Events                              |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
 | Manage Events                              |      ➖      |   ➖   |   ✅   |   ✅   |     ✅      |    ✅     |
-| **Administrator**                          |      ➖      |   ➖   |   ➖   |   ✅   |     ➖      |    ✅     |
+| **Administrator**                          |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
 
 ## Server Rules
 
@@ -231,3 +237,69 @@ This is a place for students to hang out, study, chill, and engage in activities
 
 To **accept** these rules, write your name here 👉 {_thread_}
 ```
+
+## Server Onboarding
+
+This is a discord feature for moderators to handle incoming new members. The Onboarding feature has 5 setup stages to it and we will go through them here.
+
+### 1. Safety Check
+
+In **DM and Spam Protection** there is "_Members must accept rules before they can talk or DM_" configuration. This should be disabled as we already have a `#rules` channel and with Onboarding you can only see the rules once. It could be usefull for c"common sense" rules like do not send adult content, or do not spam, etc. Might be a consideration if someone is really rude, but for now `#rules` should be enough.
+
+### 2. Deafult Channels
+
+The default channels for new comers will be the following categories categories:
+
+- INFORMATION
+- LAB
+- GROUPS
+
+### 3. Customization Questions
+
+**Pre-join Questions** will be which program the members is studying. It will include both [`Study Programs` and `Lab Visitors` roles](#server-roles). An answer is required and only one is allowed.
+
+- `@sample role` **Sample Answer** Sample Description
+- `@SE-BSc` **Software Engineering** Software Engineering
+- `@SE-MSc` **Civilingenjör i mjukvaruutveckling** Master of Science in Engineering: Software
+Engineering
+- `@Sec-BSc` **Högskoleingenjör i IT-säkerhet** Bachelor of Science in Engineering: Computer
+Security
+- `@Sec-MSc` **Civilingenjör i datorsäkerhet** Master of Science in Engineering: Computer
+Security
+- `@AI Study` **AI programmet** AI studies
+- `@Web Study` **Webbutveckling** Web studies
+- `@Game Study` **Spelutveckling** Game studies
+- `@Other Study` **Annat program** Other studies
+- `@BTH` **Anställd på BTH** BTH Employee
+- `@Visitor` **Bara Besöker** Only Visiting
+
+**Post-join Questions** will be [`Hobby Groups` roles](#server-roles) that people can join to get notified about their activities.
+
+### 4. Server Guide
+
+**Welcome Sign** is an automated welcome message sent to new members. A user needs the _Manage Roles_ and _Manage Server_ permissions to be an author. This is a perfect place to utilize Rat King to greet our new members to the lab.
+
+```text
+Welcome [@username] to the Ericsson Space Lab!
+We’ve created this Discord server as the communication hub for the Space Lab. Here, you can participate in activities and discussions about school, technology, and various projects. The Lab is run by us, the LabRats, so if you have any questions, feel free to reach out by typing @LabRat.
+To help you get started, we’ve curated some useful tasks below:
+```
+
+**New Member To Do's** consists of 3 to 5 tasks that gets recommended to new members. "Read the rules" is always a task, so technically it is minimum 4 tasks.
+
+- Look at upcoming activities `#announcements`
+- Understand the info-hub `#info-hub`
+- Check out our equipment `#loan-equipment`
+- Visit general chat `#general` (temporary until `#loan-equipment` is functional)
+- Read the rules
+
+**Resource Pages** reshapes a chat channel to be more article like. This will be useful for multiple channels in our use case.
+
+- `#rules`
+- `#info-hub`
+- `#loan-equipment`
+- Other program overviews
+
+### 5. Review
+
+Last step in the process. Not much to say here. Review the onboarding configurations and enable the feature.
