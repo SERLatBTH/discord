@@ -53,19 +53,23 @@ These are tools provided by discord that can help both users and moderators to f
   - **rules**
     > Includes opening hours, what food to bring, the user must behave well, etc. The user needs to accept the terms to access the discord server.
   - **announcements**
-  - **links**
-- **`GENERAL`**
+  - **info-hub**
+    > A resource channel for getting good general information, like opening hours during summer, or how to change nickname, or how to borrow equipment, etc. It is an information hub with resources on how to navigate the discord server.
+- **`LAB`**
   - **general**
   - **memes**
-  - **_discussions_**
+  - **discussions**
     - _Games to buy_
     - _Any plans to hold a movie night?_
     - _Etc_
       > A thread channel dedicated to discussions, anyone can create a thread in that channel and the discord bot may reformat the thread to be "`@user` wish to discuss about `#Games to buy`". (Subject to change, it is a very long message for it to be spammed in a single channel).
-- **`HELP`**
   - **lab-access**
   - **loan-equipment**
     > A channel dedicated for discord-bot to manage renting equipment. It is read only, but admins can send a command for the discord-bot to keep track of responsibility and return date.
+- **`GROUPS`**
+  - **3d-print**
+  - **ai-arena**
+  - **code-crafter**
 - **`STUDY`**
   - **software-engineering**
   - **other-program-overview**
@@ -205,4 +209,4 @@ If not specified every role has the same permissions as `@everyone`. The excepti
 | **Events Permissions**                     |             |       |       |       |            |          |
 | Create Events                              |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
 | Manage Events                              |      ➖      |   ➖   |   ✅   |   ✅   |     ✅      |    ✅     |
-| **Administrator**                          |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
+| **Administrator**                          |      ➖      |   ➖   |   ➖   |   ✅   |     ➖      |    ✅     |
