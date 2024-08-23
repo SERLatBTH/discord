@@ -8,6 +8,7 @@
   - [Server Roles](#server-roles)
     - [Role Display](#role-display)
     - [Role Permissions](#role-permissions)
+  - [Server Rules](#server-rules)
 
 This document defines structures for how the Discord Server shall be configured. Including comments with reasoning behind selected configuration options. Acts as a backup if the Discord Server gets compromised or an authorized user changes unintended settings without documentation.
 
@@ -52,6 +53,8 @@ These are tools provided by discord that can help both users and moderators to f
 - **`INFORMATION`**
   - **rules**
     > Includes opening hours, what food to bring, the user must behave well, etc. The user needs to accept the terms to access the discord server.
+    - _Accept Rules_
+      > Thread for new users to write their name to change their discord nickname and accept the rules.
   - **announcements**
   - **info-hub**
     > A resource channel for getting good general information, like opening hours during summer, or how to change nickname, or how to borrow equipment, etc. It is an information hub with resources on how to navigate the discord server.
@@ -210,3 +213,21 @@ If not specified every role has the same permissions as `@everyone`. The excepti
 | Create Events                              |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
 | Manage Events                              |      ➖      |   ➖   |   ✅   |   ✅   |     ✅      |    ✅     |
 | **Administrator**                          |      ➖      |   ➖   |   ➖   |   ✅   |     ➖      |    ✅     |
+
+## Server Rules
+
+```markdown
+This is a place for students to hang out, study, chill, and engage in activities. Everyone is welcome, but please follow our guidelines to ensure a positive experience for all. Violating the rules may result in revoked access to the lab.
+
+**Rules:**
+**1. Closing Hours:** Ericsson Space closes at 23:00. Do not stay in the lab after closing time.
+**2. Food:** Only wrapped candy or bars are allowed in the lab; other food is prohibited.
+**3. Drinks:** Water is allowed. Other drinks are permitted as long as they are in resealable containers. Alcohol is not allowed.
+**4. Noise Level:** Respect each other by keeping noise levels down. People may be studying.
+**5. Tidyness:** Return all chairs to their desks after use. Keep walkways and workspaces clear.
+**6. Consoles:** Handle all gaming controls for PS4 and PS5 with care. Return them to the charging stations after use.
+**7. Cables:** Do not unplug or move cables. If any cables are missing, contact the labrats.
+**8. Contact:** If Ericsson Space is messy, equipment is damaged, or anything is missing, notify `@Lab Rat` to address the issue quickly.
+
+To **accept** these rules, write your name here 👉 {_thread_}
+```
