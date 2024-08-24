@@ -8,7 +8,9 @@
   - [Server Roles](#server-roles)
     - [Role Display](#role-display)
     - [Role Permissions](#role-permissions)
+  - [Server Channel Permissions](#server-channel-permissions)
   - [Server Rules](#server-rules)
+  - [Server Information Hub](#server-information-hub)
   - [Server Onboarding](#server-onboarding)
     - [1. Safety Check](#1-safety-check)
     - [2. Deafult Channels](#2-deafult-channels)
@@ -72,7 +74,7 @@ These are tools provided by discord that can help both users and moderators to f
     - _Any plans to hold a movie night?_
     - _Etc_
       > A thread channel dedicated to discussions, anyone can create a thread in that channel and the discord bot may reformat the thread to be "`@user` wish to discuss about `#Games to buy`". (Subject to change, it is a very long message for it to be spammed in a single channel).
-  - **lab-access**
+  - **help**
   - **loan-equipment**
     > A channel dedicated for discord-bot to manage renting equipment. It is read only, but admins can send a command for the discord-bot to keep track of responsibility and return date.
 - **`GROUPS`**
@@ -90,13 +92,13 @@ These are tools provided by discord that can help both users and moderators to f
       > A dedicated channel for all university courses that are relevant to our discord server. This will act as a registry for any student user to look for struggles and solutions from previous students. Only the discord-bot will manage this channel by creating threads based on program overviews defined above. The last message will always be instructions on how to use Discord's search threads function in the top right corner.
 - **`RODENTS`**
   - **general**
-  - **lab-suggestions**
-    > A forum to discuss how to improve the lab
   - **happenings**
     - _Robotics Workshop_
     - _Open House_
     - _Lab Meeting 2024-08-13_
       > A channel that acts as both announcements and events in one. Admins can announce upcoming meetings. Moderators can create threads to plan upcoming happenings. Here lies an opportunity for the discord bot to summarize past meetings to create an opening speech for a new meeting. Perhaps `/meeting` is a suitable command.
+  - **lab-suggestions**
+    > A forum to discuss how to improve the lab
   - **discord-logs** (Subscribed to discord newsletter)
     > Mainly a channel for admins to see new discord features. Could include threads that has the purpose of logging the server or new members joining.
     - _Member Log_
@@ -105,46 +107,46 @@ These are tools provided by discord that can help both users and moderators to f
 
 ## Server Roles
 
-A list of roles supported by the discord server. The headers should be surrounded by two "▬" in the server to distinguish them from regular roles. They are not meant to be assignable.  
+A list of roles supported by the discord server. The headers should be surrounded by two "●" in the server to distinguish them from regular roles. They are not meant to be assignable.  
 On the roles that has an emoji present, it is not part of the role title but a way to dictate what should be added to a user's username. The discord bot should automatically assign the emojis when a role changes.
 
-- **▬▬ Admin ▬▬**
+- **●● Admin ●●**
   - Ratministrator
     > Role dedicated to manage the discord server itself. It is a dangerous role because it has the same privileges as Lab Director and could change anything. This role is on the top of the list so that it has access to change all other roles.
-- **▬▬ Lab Employees ▬▬**
+- **●● Lab Employees ●●**
   - Lab Director 🥼
     > Employee responsible for the lab.
   - Lab Researcher 🥼
     > University Professors who are active in creating workshops and making projects.
-- **▬▬ Lab Assistants ▬▬**
+- **●● Lab Assistants ●●**
   - Rat King 👑
   - Lab Rat 🐀
   - Lab Mouse 🐁
   - Lab Escapee 🚪
-- **▬▬ Study Programs ▬▬**
+- **●● Study Programs ●●**
   - SE-BSc
-  - SE-MSc
+  - SE-Civ
   - Sec-BSc
-  - Sec-MSc
+  - Sec-Civ
   - AI Study
   - Web Study
   - Game Study
   - Other Study
-- **▬▬ Lab Visitors ▬▬**
+- **●● Lab Visitors ●●**
   > Set of roles for members outside the lab. For example, a professor from a different program or an external company employee.
-  - BTH
   - Visitor 🎩
-- **▬▬ Hobby Groups ▬▬**
+  - BTH
+- **●● Hobby Groups ●●**
   > A dynamic list of roles for dedicated groups within the lab. Such as hobbyist or participents in weekly activities. The **Hobby Groups** roles is the only set of roles that are expected to grow and shrink over time. The discord bot should have a command to manage these groups.
   - Ninja Maker/3D Printmaster
   - Code Crafter
   - AI Arena
   - ...
-- **▬▬ Rat King Tools ▬▬**
+- **●● Rat King Tools ●●**
   > A set of roles that Rat King should manage on the fly. None of them should effect the user experience.
   - Test Subject 🧪
     > A role given to newcomers. Will be removed after they've accepted the `#rules`.
-  - Lendmaster 📤
+  - Lender 📤
   - Borrower 📥
     > Roles given to the labrat lending and the user recieving respectevely.
   - Study Curious
@@ -154,7 +156,7 @@ On the roles that has an emoji present, it is not part of the role title but a w
 
 All roles **not** specified shall have the default role color and keep the extra display options disabled.
 
-- **Lab Employees** has a blue color to represent the university color. _Lab Director_ has a brighter color `#6996a2` to signify their importance while _Lab Researcher_ has a darker color `#508593`. _Lab Director_ always has both roles. Only _Lab Researcher_ shall enable the "Display role members separately from online members". The color is based on the university color `#055064` but at 30 and 40 percent brighter respectively.
+- **Lab Employees** has a blue color to represent the university color. _Lab Director_ has a brighter color to signify their importance while _Lab Researcher_ has the darker blue color. _Lab Director_ always has both roles. Only _Lab Researcher_ shall enable the "Display role members separately from online members". The color is based on the university color `#055064` but at 30 and 40 percent brighter respectively.
 - **Lab Assistants** _Lab Rat_ and _Lab Mouse_ shall display role members seperate from others and anyone should be able to _@mention_ the role.
   - **_Rat King_** shall have a gold color `#FFD700` to represent their royalty as well as be part of _Lab Rat_ to be grouped together.
 - **Study Programs** has each field of study represented by a color. Master's has a brighter color of the bachelor's color, this is to follow the similar logic in **Lab Employees**.
@@ -162,7 +164,7 @@ All roles **not** specified shall have the default role color and keep the extra
 
 ### Role Permissions
 
-If not specified every role has the same permissions as `@everyone`. The exception is the `Ratministrator` role which has the same permissions as `Lab Director`.
+If not specified every role has the same permissions as `@everyone`. The exception is the `Ratministrator` role which has the same permissions as `Lab Director`. `Test Subject` has no permissions.
 
 | Permission                                 | `@everyone` | Mouse |  Rat  | King  | Researcher | Director |
 | :----------------------------------------- | :---------: | :---: | :---: | :---: | :--------: | :------: |
@@ -170,9 +172,10 @@ If not specified every role has the same permissions as `@everyone`. The excepti
 | View Channels                              |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
 | Manage Channels                            |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
 | Manage Roles                               |      ➖      |   ➖   |   ➖   |   ✅   |     ➖      |    ✅     |
-| Create Expressions                         |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Create Expressions                         |      ➖      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
 | Manage Expressions                         |      ➖      |   ➖   |   ✅   |   ➖   |     ✅      |    ✅     |
 | View Audit Log                             |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
+| View Server Insights                       |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
 | Manage Webhooks                            |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
 | Manage Server                              |      ➖      |   ➖   |   ➖   |   ✅   |     ➖      |    ✅     |
 | **Membership Permissions**                 |             |       |       |       |            |          |
@@ -180,7 +183,7 @@ If not specified every role has the same permissions as `@everyone`. The excepti
 | Change Nickname                            |      ➖      |   ➖   |   ➖   |   ✅   |     ➖      |    ✅     |
 | Manage Nicknames                           |      ➖      |   ➖   |   ➖   |   ✅   |     ➖      |    ✅     |
 | Kick Members                               |      ➖      |   ➖   |   ✅   |   ➖   |     ✅      |    ✅     |
-| Ban Members                                |      ➖      |   ➖   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Ban Members                                |      ➖      |   ➖   |   ➖   |   ➖   |     ✅      |    ✅     |
 | Timeout Members                            |      ➖      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
 | **Text Channel Permissions**               |             |       |       |       |            |          |
 | Send Messages                              |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
@@ -213,29 +216,90 @@ If not specified every role has the same permissions as `@everyone`. The excepti
 | Set Voice Channel Status                   |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
 | **Apps Permissions**                       |             |       |       |       |            |          |
 | Use Application Commands                   |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
-| Use Activities                             |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
-| Use External Apps                          |      ✅      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Use Activities                             |      ➖      |   ✅   |   ✅   |   ➖   |     ✅      |    ✅     |
+| Use External Apps                          |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
+| **Stage Channel Permissions**              |             |       |       |       |            |          |
+| Request to Speak                           |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ➖     |
 | **Events Permissions**                     |             |       |       |       |            |          |
-| Create Events                              |      ✅      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
+| Create Events                              |      ➖      |   ✅   |   ✅   |   ✅   |     ✅      |    ✅     |
 | Manage Events                              |      ➖      |   ➖   |   ✅   |   ✅   |     ✅      |    ✅     |
 | **Administrator**                          |      ➖      |   ➖   |   ➖   |   ➖   |     ➖      |    ✅     |
+
+## Server Channel Permissions
+
+Any channel that doesn't specify permissions should have grayed out permissions. This will make the role default to its own permissions, which we defined right above, [here](#role-permissions).
+
+- **`INFORMATION`**
+  > `@everyone` View Channels ✅ | Manage Channels ❌ | Manage Permissions ❌ | Manage Webhooks ❌ | Send Message ❌ | Send Message in Threads ❌ | Create Public Threads ❌ | Create Private Threads ❌ | Read Messsage History ✅ |  
+  > `@Rat King` Send Messages ✅ | Send Messages in Threads ✅ |
+  - **rules**
+  - **announcements**
+    > `@Lab Rat` Send Messages ✅ |  
+    > `@Lab Researcher` Send Messages ✅ |  
+  - **info-hub**
+- **`LAB`**
+  - **general**
+  - **memes**
+  - **discussions**
+  - **help**
+  - **loan-equipment**
+    > `@everyone` View Channels ✅ | Send Message ❌ | Send Message in Threads ❌ | Create Public Threads ❌ | Create Private Threads ❌ | Read Messsage History ✅ |  
+    > `@Rat King` Send Messages ✅ | Send Messages in Threads ✅ | Create Public Threads ✅ | Create Private Threads ✅ |
+- **`GROUPS`**
+  - **3d-print**
+  - **ai-arena**
+  - **code-crafter**
+- **`STUDY`**
+    > Not Implemented
+  - **software-engineering**
+  - **other-program-overview**
+  - **_all-courses_**
+- **`RODENTS`**
+    > Private Category! Roles that has access: `@Lab Mouse`, `@Lab Rat`, `@Lab Researcher`, `@Rat King`
+  - **general**
+  - **lab-suggestions**
+  - **happenings**
+  - **discord-logs**
 
 ## Server Rules
 
 ```markdown
 This is a place for students to hang out, study, chill, and engage in activities. Everyone is welcome, but please follow our guidelines to ensure a positive experience for all. Violating the rules may result in revoked access to the lab.
 
-**Rules:**
-**1. Closing Hours:** Ericsson Space closes at 23:00. Do not stay in the lab after closing time.
-**2. Food:** Only wrapped candy or bars are allowed in the lab; other food is prohibited.
-**3. Drinks:** Water is allowed. Other drinks are permitted as long as they are in resealable containers. Alcohol is not allowed.
-**4. Noise Level:** Respect each other by keeping noise levels down. People may be studying.
-**5. Tidyness:** Return all chairs to their desks after use. Keep walkways and workspaces clear.
-**6. Consoles:** Handle all gaming controls for PS4 and PS5 with care. Return them to the charging stations after use.
-**7. Cables:** Do not unplug or move cables. If any cables are missing, contact the labrats.
-**8. Contact:** If Ericsson Space is messy, equipment is damaged, or anything is missing, notify `@Lab Rat` to address the issue quickly.
+**1. Closing Hours** Ericsson Space closes at 23:00. Do not stay in the lab after closing time.
+**2. Food** Only wrapped candy or bars are allowed in the lab; other food is prohibited.
+**3. Drinks** Water is allowed. Other drinks are permitted as long as they are in resealable containers. Alcohol is not allowed.
+**4. Noise Level** Respect each other by keeping noise levels down. People may be studying.
+**5. Tidyness** Return all chairs to their desks after use. Keep walkways and workspaces clear.
+**6. Consoles** Handle all gaming controls for PS4 and PS5 with care. Return them to the charging stations after use.
+**7. Cables** Do not unplug or move cables. If any cables are missing, contact the labrats.
+**8. Contact** If Ericsson Space is messy, equipment is damaged, or anything is missing, notify `@Lab Rat` to address the issue quickly.
 
 To **accept** these rules, write your name here 👉 {_thread_}
+```
+
+## Server Information Hub
+
+```markdown
+**Welcome to the #info-hub!**
+If any information is unclear, feel free to ask us `@Lab Rat`s in #help.
+
+**🕒 ● Opening Hours**
+Ericsson Space Lab has the same opening hours as BTH Campus, with the exception of students who study within [DIPT](https://www.bth.se/om-oss/institutioner/dipt/) or [DIDA](https://www.bth.se/om-oss/institutioner/dida/) who has access on both weekends and to 23:00.
+`08:00-17:00` on regular work days.
+`08:00-23:00` on all days for [DIPT](https://www.bth.se/om-oss/institutioner/dipt/) & [DIDA](https://www.bth.se/om-oss/institutioner/dida/) students.
+
+**🎓 ● Change Your Study Program**
+You can customize your discord experience and what you study in <id:browse>. If the link is not working you can go to the top left of your discord client (above the #rules channel) and find a channel labeled `#Browse Channels` or equivalent in your language.
+
+**✉️ ● Server Link for Inviting Others**
+We use the following link: `https://discord.gg/QSkpKzeXsZ`
+
+**📅 ● Know when the Lab is Occupied**
+Sometimes we hold events in the lab for external visitors. You can see upcoming events on the TV in the projector room. You can also subscribe to one of the calendars in our [linktree](https://serlatbth.github.io/linktree/) if you wish to see it on your personal calendar. Some events will simply be a lunch meeting and others might occupy an entire day. We will also send a message in #announcements.
+
+**🧸 ● How do I borrow equipment?**
+At the moment we don't have a system to lend out equipment. When it is ready, everything will be handled in #loan-equipment channel. Stay tuned :)
 ```
 
 ## Server Onboarding
@@ -260,16 +324,16 @@ The default channels for new comers will be the following categories categories:
 
 - `@sample role` **Sample Answer** Sample Description
 - `@SE-BSc` **Software Engineering** Software Engineering
-- `@SE-MSc` **Civilingenjör i mjukvaruutveckling** Master of Science in Engineering: Software
+- `@SE-MSc` **Civilingenjör i Mjukvaruutveckling** Master of Science in Engineering: Software
 Engineering
 - `@Sec-BSc` **Högskoleingenjör i IT-säkerhet** Bachelor of Science in Engineering: Computer
 Security
-- `@Sec-MSc` **Civilingenjör i datorsäkerhet** Master of Science in Engineering: Computer
+- `@Sec-MSc` **Civilingenjör i Datorsäkerhet** Master of Science in Engineering: Computer
 Security
-- `@AI Study` **AI programmet** AI studies
-- `@Web Study` **Webbutveckling** Web studies
-- `@Game Study` **Spelutveckling** Game studies
-- `@Other Study` **Annat program** Other studies
+- `@AI Study` **AI Programmet** AI Studies
+- `@Web Study` **Webbutveckling** Web Studies
+- `@Game Study` **Spelutveckling** Game Studies
+- `@Other Study` **Annat Program** Other Studies
 - `@BTH` **Anställd på BTH** BTH Employee
 - `@Visitor` **Bara Besöker** Only Visiting
 
@@ -281,8 +345,8 @@ Security
 
 ```text
 Welcome [@username] to the Ericsson Space Lab!
-We’ve created this Discord server as the communication hub for the Space Lab. Here, you can participate in activities and discussions about school, technology, and various projects. The Lab is run by us, the LabRats, so if you have any questions, feel free to reach out by typing @LabRat.
-To help you get started, we’ve curated some useful tasks below:
+We created this Discord server to be our communication hub for the Space Lab. Here, you can participate in activities and discussions about school, technology, and various projects.
+To help you get started, I've curated some useful tasks below:
 ```
 
 **New Member To Do's** consists of 3 to 5 tasks that gets recommended to new members. "Read the rules" is always a task, so technically it is minimum 4 tasks.
